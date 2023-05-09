@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Test
+{% endblock %}
+
+{% block body %}
+    <h1>Welcome to test.it</h1>
+
+    {# Création de variable #}
+    {% set name = "mom" %}
+
+    {# Afficher de variable #}
+    <h2>Hello, {{ name }}!</h2>
+
+    {% set colors = ['Blue', 'Pink', 'Red', 'Yellow'] %}
+    {% for color in colors %}
+        {% if loop.first %}
+            <p>Première itération : </p>
+        {% endif %}
+        {% if loop.last %}
+            <p>Dernière itération : </p>
+        {% endif %}
+        <div style="background-color : {{ color }}">{{ color }}</div>
+        <div>Position élément : {{ loop.index }} / {{ loop.length }}</div>
+    {% endfor %}
+
+    {# Manipulation d'un objet #}
+    {% set serie = {
+        title : "Breaking Bad",
+        year : 2008
+    } %}
+
+    <h2>Mes séries</h2>
+
+    <div>Titre : {{ serie.title }}</div>
+    {% for key, val in serie %}
+        <p>{{ key }} : {{ val }} </p>
+    {% endfor %}
+
+    {# Quelques filtres #}
+    <h2>Filtres</h2>
+    <div>{{ name | upper }} : {{ name | length }} lettres.</div>
+    <div>Colors : {{ colors | join(', ') }}</div>
+    <div>Date du jour : {{ "Now" | date('Y-m-d') }}</div>
+{% endblock %}

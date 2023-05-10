@@ -15,9 +15,12 @@
 </head>
 <body>
     <div class="container">
+
         <header>
-            <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a> </h1>
-            {% include 'menu/nav.html.twig' %}
+            <div>
+                <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a> </h1>
+                {% include 'menu/nav.html.twig' %}
+            </div>
         </header>
         <main>
             {% block body %}Base{% endblock %}

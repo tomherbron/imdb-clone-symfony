@@ -11,7 +11,13 @@
     {% set name = "mom" %}
 
     {# Afficher de variable #}
-    <h2>Hello, {{ name }}!</h2>
+    <h2>Hello, {{ pseudo }} !</h2>
+
+    <div>
+        <img src="{{ asset('img/9063876.jpg') }}" height="300" width="250">
+        <h3>Titre : {{ show.title }}</h3>
+        <h3>Année : {{ show.year }}</h3>
+    </div>
 
     {% set colors = ['Blue', 'Pink', 'Red', 'Yellow'] %}
     {% for color in colors %}

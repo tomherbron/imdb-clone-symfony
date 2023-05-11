@@ -16,7 +16,7 @@ class SerieController extends AbstractController
     #[Route('', name: 'list')]
     public function list(SerieRepository $serieRepository): Response
     {
-        $series = $serieRepository->findAll();
+        $series = $serieRepository->findBy([], ['popularity' => 'DESC'], 50);
         dump($series);
         return $this->render('serie/list.html.twig', [
             "series" => $series
@@ -24,10 +24,13 @@ class SerieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'show', requirements : ["id" => "\d+"])]
-    public function show(int $id): Response
+    public function show(int $id, SerieRepository $serieRepository): Response
     {
-        dump($id);
-        return $this->render('serie/show.html.twig');
+
+        $serie = $serieRepository -> find($id);
+        return $this->render('serie/show.html.twig', [
+            'serie' => $serie
+        ]);
     }
 
     #[Route('/add', name: 'add')]

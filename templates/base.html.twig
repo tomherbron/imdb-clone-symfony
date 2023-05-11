@@ -15,7 +15,6 @@
 </head>
 <body>
     <div class="container">
-
         <header>
             <div>
                 <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a> </h1>
@@ -29,5 +28,8 @@
             {% include 'menu/nav.html.twig' %}
         </footer>
     </div>
+    {% block extraStyle %}
+
+    {% endblock %}
 </body>
 </html>

@@ -53,6 +53,8 @@ class Serie
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateModified = null;
 
+    const MAX_RESULT = '48';
+
     public function getId(): ?int
     {
         return $this->id;

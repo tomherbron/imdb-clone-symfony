@@ -6,21 +6,24 @@
 
 {% block body %}
 
-    <h2>Details about {{ serie.name }}</h2>
+    <h2>Series.me | Details about {{ serie.name }}</h2>
 
-    <div class="serie-details">
-        <div>
-            <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+    <section>
+        <div class="serie-details">
+            <div>
+                <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+            </div>
+            <div class="serie-details-infos">
+                <h3>{{ serie.name }}</h3>
+                <div>User ratings : {{ serie.vote }}</div>
+                <div>Categorized in : {{ serie.genres }}</div>
+                <div>Serie status : {{ serie.status }}</div>
+                <div>Broadcasted from {{ serie.firstAirDate | date('Y-m-d') }} to {{ serie.lastAirDate | date('Y-m-d') }}</div>
+                <div>{{ serie.overview | nl2br }}</div>
+                <a class="link_button" href="{{ path('serie_update', {'id': serie.id}) }}">Update</a>
+            </div>
         </div>
-        <div class="serie-details-infos">
-            <h3>{{ serie.name }}</h3>
-            <div>User ratings : {{ serie.vote }}</div>
-            <div>Categorized in : {{ serie.genres }}</div>
-            <div>Serie status : {{ serie.status }}</div>
-            <div>Broadcasted from {{ serie.firstAirDate | date('Y-m-d') }} to {{ serie.lastAirDate | date('Y-m-d') }}</div>
-            <div>{{ serie.overview | nl2br }}</div>
-        </div>
-    </div>
+    </section>
 
 {% endblock %}
 

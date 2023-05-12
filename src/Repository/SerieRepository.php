@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Serie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 /**
  * @extends ServiceEntityRepository<Serie>
@@ -37,6 +38,39 @@ class SerieRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findBestSeries(){
+        /*
+            $entityManager = $this->getEntityManager();
+            $dql = "SELECT s FROM App\Entity\Serie s
+                    WHERE s.vote >= 8 AND s.popularity >= 200 ORDER BY s.popularity DESC";
+            $query = $entityManager->createQuery($dql);
+            return $query->getResult();
+        */
+
+        $queryBuilder = $this->createQueryBuilder('s');
+        $queryBuilder
+            ->andWhere('s.vote >= 8')
+            ->andWhere('s.popularity >= 150')
+            ->addOrderBy('s.popularity', 'DESC');
+
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
+    public function findAllSeries(int $page){
+        $queryBuilder = $this->createQueryBuilder('s');
+        $queryBuilder
+            ->addOrderBy('s.popularity', 'DESC');
+
+        $query = $queryBuilder->getQuery();
+        $query->setMaxResults(Serie::MAX_RESULT);
+
+        $offset = ($page - 1) * Serie::MAX_RESULT;
+
+        $query->setFirstResult($offset);
+        return $query->getResult();
     }
 
 //    /**

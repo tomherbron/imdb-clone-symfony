@@ -43,8 +43,8 @@ class MainController extends AbstractController
 
                 // Using SerieRepository
 
-            $serieRepository -> save($show, true);
-            */
+                $serieRepository -> save($show, true);
+          */
         return $this -> render('main/test.html.twig', [
             "pseudo" => $username,
             "show" => $witcher

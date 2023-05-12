@@ -5,5 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Add new show</h2>
+    {% embed 'views/form/series_form.html.twig' %}
+        {%  block h2 %} Series.me | Add new show {% endblock %}
+        {%  block buttonLabel %} | Add {% endblock %}
+    {% endembed %}
 {% endblock %}

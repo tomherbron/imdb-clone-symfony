@@ -20,6 +20,13 @@
                 <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a> </h1>
                 {% include 'menu/nav.html.twig' %}
             </div>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </header>
         <main>
             {% block body %}Base{% endblock %}

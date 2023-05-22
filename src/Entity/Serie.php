@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\SerieRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use http\Message;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SerieRepository::class)]
 class Serie
@@ -14,12 +16,19 @@ class Serie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Name is mandatory.")]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $overview = null;
 
+    #[Assert\Length(
+        min: 10,
+        max: 255,
+        minMessage: "Overview must be at least 10 caracters.",
+        maxMessage: "Overview must be 255 caracters maximum."
+    )]
     #[ORM\Column(length: 50)]
     private ?string $status = null;
 

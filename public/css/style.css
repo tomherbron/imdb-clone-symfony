@@ -140,6 +140,11 @@ textarea{
     background-color: red
 }
 
+.error ul li {
+    color: red;
+    list-style-type: none;
+}
+
 /************************** Module 7 Relations *****************************************/
 
 

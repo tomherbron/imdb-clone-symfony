@@ -25,7 +25,7 @@ class SerieController extends AbstractController
         } else if ($page > $maxPage){
             return $this->redirectToRoute('serie_list', ['page' => $maxPage]);
         } else {
-            $series = $serieRepository->findAllSeries($page);
+            $series = $serieRepository->findSeriesWithPagination($page);
             return $this->render('serie/list.html.twig', [
                 "series" => $series,
                 "currentPage" => $page,
@@ -89,7 +89,11 @@ class SerieController extends AbstractController
 
     #[Route('/delete/{id}', name:'delete', requirements:["id" => "\d+"])]
     public function delete(int $id, SerieRepository $repository){
+        $serie = $repository->find($id);
+        $repository->remove($serie, true);
 
+        $this->addFlash('success', $serie->getName() . " has been removed.");
+        return $this->redirectToRoute('main_home');
     }
 
 }

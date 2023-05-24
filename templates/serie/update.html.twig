@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% embed 'views/form/series_form.html.twig' %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : seriesForm } %}
         {%  block h2 %} Series.me | Update show {% endblock %}
-        {%  block buttonLabel %} | Update {% endblock %}
+        {%  block buttonLabel %} Update {% endblock %}
     {% endembed %}
 {% endblock %}
 

@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    {% embed 'views/form/default_form.html.twig' with {'form' : seriesForm}%}
-        {%  block h2 %} Series.me | Add new show {% endblock %}
+    {% embed 'views/form/default_form.html.twig' with {'form' : seasonform}%}
+        {%  block h2 %} Series.me | Add new season {% endblock %}
         {%  block buttonLabel %} Add {% endblock %}
     {% endembed %}
 {% endblock %}

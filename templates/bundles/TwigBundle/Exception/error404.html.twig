@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Error 404 | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h2>Bad ! 404 !</h2>
+    <h3>{{ exception.message }}</h3>
+    <div>
+        <img src="{{ asset('img/backdrops/WUNKBYMHSNFH7BDJ6DTDM3EK2I.jpg') }}" alt="error">
+    </div>
+{% endblock %}

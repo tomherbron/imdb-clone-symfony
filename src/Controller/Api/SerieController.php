@@ -3,7 +3,10 @@
 namespace App\Controller\Api;
 
 use App\Repository\SerieRepository;
+use phpDocumentor\Reflection\Types\Boolean;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -38,10 +41,24 @@ class SerieController extends AbstractController
 
     }
 
-    #[Route('/{$id}', name: 'update_one', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOne(): Response
+    #[Route('/{id}', name: 'update_one', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    public function updateOne(int $id, Request $request, SerieRepository $repository): Response
     {
+        $series = $repository->find($id);
+
+        if ($series){
+
+            $data = json_decode($request->getContent());
+            if ($data->value){
+                $series->setNbLike($series->getNbLike() + 1);
+            } else {
+                $series->setNbLike($series->getNbLike() - 1);
+            }
+            $repository->save($series,true);
+            return $this->json(['nbLike' => $series->getNbLike()]);
+        }
 
 
+        return $this->json(['error' => 'seriesNotFound']);
     }
 }

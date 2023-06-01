@@ -48,6 +48,7 @@ class SeasonController extends AbstractController
             $this->addFlash('success', 'Season added on '. $season->getSerie()->getName());
             return $this->redirectToRoute('serie_show', ['id' => $season->getSerie()->getId()]);
 
+
         }
 
         return $this->render('season/add.html.twig', [

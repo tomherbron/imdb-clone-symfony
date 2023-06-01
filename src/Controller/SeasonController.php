@@ -19,8 +19,8 @@ class SeasonController extends AbstractController
     #[Route('/add/{id}', name: 'add', requirements: ['id' => '\d+'])]
     public function add(SeasonRepository $repository, SerieRepository $serieRepository, Request $request, int $id, Uploader $uploader): Response
     {
-        $serie = $serieRepository->find($id);
 
+        $serie = $serieRepository->find($id);
         $season = new Season();
         $season->setSerie($serie);
         $seasonForm = $this->createForm(SeasonType::class, $season);

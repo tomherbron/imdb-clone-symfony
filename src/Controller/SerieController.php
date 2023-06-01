@@ -54,6 +54,7 @@ class SerieController extends AbstractController
     #[Route('/add', name: 'add')]
     public function add(Request $request, SerieRepository $repository): Response
     {
+
         $newSeries = new Serie();
         $seriesForm = $this->createForm(SerieType::class, $newSeries);
 
